@@ -1,0 +1,35 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}BlackList index{% endblock %}
+
+{% block body %}
+    <h1>BlackList index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Dni</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for black_list in black_lists %}
+            <tr>
+                <td>{{ black_list.id }}</td>
+                <td>{{ black_list.dni }}</td>
+                <td>
+                    <a href="{{ path('black_list_show', {'id': black_list.id}) }}">show</a>
+                    <a href="{{ path('black_list_edit', {'id': black_list.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="3">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('black_list_new') }}">Create new</a>
+{% endblock %}

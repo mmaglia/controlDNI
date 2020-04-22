@@ -1,5 +1,16 @@
 doctrine:
     dbal:
+        driver: 'pdo_postgresql'
+        server_version: '12.2'
+        charset: utf8
+        schema_filter: '~^(?!messenger_messages)~'
+        default_table_options:
+            charset: utf8
+            collate: utf8_unicode_ci
+
+        # Oracle
+        # charset: AL32UTF8
+
         url: '%env(resolve:DATABASE_URL)%'
 
         # IMPORTANT: You MUST configure your server version,

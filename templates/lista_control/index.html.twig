@@ -1,0 +1,37 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}ListaControl index{% endblock %}
+
+{% block body %}
+    <h1>ListaControl index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Fecha</th>
+                <th>Descripcion</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for lista_control in lista_controls %}
+            <tr>
+                <td>{{ lista_control.id }}</td>
+                <td>{{ lista_control.fecha ? lista_control.fecha|date('Y-m-d') : '' }}</td>
+                <td>{{ lista_control.descripcion }}</td>
+                <td>
+                    <a href="{{ path('lista_control_show', {'id': lista_control.id}) }}">show</a>
+                    <a href="{{ path('lista_control_edit', {'id': lista_control.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="4">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('lista_control_new') }}">Create new</a>
+{% endblock %}

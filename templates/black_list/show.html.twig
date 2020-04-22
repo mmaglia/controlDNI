@@ -1,0 +1,26 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}BlackList{% endblock %}
+
+{% block body %}
+    <h1>BlackList</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ black_list.id }}</td>
+            </tr>
+            <tr>
+                <th>Dni</th>
+                <td>{{ black_list.dni }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('black_list_index') }}">back to list</a>
+
+    <a href="{{ path('black_list_edit', {'id': black_list.id}) }}">edit</a>
+
+    {{ include('black_list/_delete_form.html.twig') }}
+{% endblock %}

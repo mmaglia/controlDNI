@@ -1,0 +1,37 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Controlado index{% endblock %}
+
+{% block body %}
+    <h1>Controlado index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Dni</th>
+                <th>Fecha</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for controlado in controlados %}
+            <tr>
+                <td>{{ controlado.id }}</td>
+                <td>{{ controlado.dni }}</td>
+                <td>{{ controlado.fecha ? controlado.fecha|date('Y-m-d') : '' }}</td>
+                <td>
+                    <a href="{{ path('controlado_show', {'id': controlado.id}) }}">show</a>
+                    <a href="{{ path('controlado_edit', {'id': controlado.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="4">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('controlado_new') }}">Create new</a>
+{% endblock %}

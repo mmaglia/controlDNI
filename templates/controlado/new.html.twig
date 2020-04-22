@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New Controlado{% endblock %}
+
+{% block body %}
+    <h1>Create new Controlado</h1>
+
+    {{ include('controlado/_form.html.twig') }}
+
+    <a href="{{ path('controlado_index') }}">back to list</a>
+{% endblock %}

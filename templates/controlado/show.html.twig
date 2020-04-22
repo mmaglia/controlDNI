@@ -1,0 +1,30 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Controlado{% endblock %}
+
+{% block body %}
+    <h1>Controlado</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ controlado.id }}</td>
+            </tr>
+            <tr>
+                <th>Dni</th>
+                <td>{{ controlado.dni }}</td>
+            </tr>
+            <tr>
+                <th>Fecha</th>
+                <td>{{ controlado.fecha ? controlado.fecha|date('Y-m-d') : '' }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('controlado_index') }}">back to list</a>
+
+    <a href="{{ path('controlado_edit', {'id': controlado.id}) }}">edit</a>
+
+    {{ include('controlado/_delete_form.html.twig') }}
+{% endblock %}
