@@ -1,0 +1,28 @@
+{% block title %}Listado de Prueba{% endblock %}
+
+{% block body %}
+    <h1><center>Listado de Prueba!</center></h1>
+
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Fecha</th>
+                <th>Descripcion</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for lista_control in lista_controls %}
+            <tr>
+                <td width="80px">{{ lista_control.id }}</td>
+                <td width="180px">{{ lista_control.fecha ? lista_control.fecha|date('Y-m-d') : '' }}</td>
+                <td width="500px">{{ lista_control.descripcion }}</td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="4">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

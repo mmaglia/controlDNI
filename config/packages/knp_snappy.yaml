@@ -1,0 +1,20 @@
+knp_snappy:
+    pdf:
+        enabled:    true
+#        binary:     '%env(WKHTMLTOPDF_PATH)%'
+        binary:     xvfb-run '%env(WKHTMLTOPDF_PATH)%'
+
+        options:
+            page-size: LEGAL
+            dpi: 300
+            image-quality: 80
+            margin-left: 15mm
+            margin-right: 15mm
+            margin-top: 15mm
+            margin-bottom: 15mm
+            user-style-sheet: '%kernel.project_dir%/public/css/pdf.css'
+    image:
+        enabled:    true
+#        binary:     '%env(WKHTMLTOIMAGE_PATH)%'
+        binary:     xvfb-run '%env(WKHTMLTOIMAGE_PATH)%'
+        options:    []

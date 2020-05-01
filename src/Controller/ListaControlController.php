@@ -9,6 +9,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Knp\Bundle\SnappyBundle\Snappy\Response\PdfResponse;
 
 /**
  * @Route("/lista/control")
@@ -91,4 +92,28 @@ class ListaControlController extends AbstractController
 
         return $this->redirectToRoute('lista_control_index');
     }
+
+
+    /**
+     * @Route("/pdf", name="lista_control_show", methods={"GET"})
+     */
+    public function showPDF(ListaControlRepository $listaControlRepository, \Knp\Snappy\Pdf $snappy)
+    {
+
+        // Aquí puedo definir plantillas genéricas para el header y footer de todos los listados
+        $header = $this->renderView('pdf/header.html.twig');
+        $footer = $this->renderView('pdf/footer.html.twig');
+
+        $html =  $this->renderView('lista_control/listado.html.twig', [
+            'lista_controls' => $listaControlRepository->findAll(),
+        ]);
+
+        // Se modifica algunas opciones para este informe. Si siempre se usarán, trasladar al archivo de configuración
+//        $snappy->setOption('orientation', 'Landscape');
+        $snappy->setOption('page-size', 'A4');
+        $snappy->setOption('viewport-size', '1024x768');
+        
+        return new PdfResponse($snappy->getOutputFromHtml($html), 'file.pdf');
+    }
+
 }
